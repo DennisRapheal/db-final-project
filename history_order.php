@@ -39,6 +39,9 @@ try {
                     echo "<tr>";
                     echo "<th>Restaurant Name</th>";
                     echo "<th>Orders</th>";
+                    echo "<th>Destination</th>";
+                    echo "<th>Delivery fee</th>";
+                    echo "<th>Status</th>";
                     echo "</tr>";
                 echo "</thead>";
 

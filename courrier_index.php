@@ -15,27 +15,58 @@
         if (empty($result)) {
             echo "No order submitted yet.";
         } else {
-            echo "<link rel='stylesheet' type='text/css' href= 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css' />";
-            echo "<link rel='stylesheet' type='text/css' href= 'css/bootstrap.css' />";
-            echo "<link rel='stylesheet' type='text/css' href= 'css/font-awesome.min.css' />";
-            echo "<link href='css/style.css' rel='stylesheet' />";
-            echo "<link href='css/responsive.css' rel='stylesheet' />";
-            echo "<form id='orderForm' action='update_order.php' method='post'>";;
-            echo "<table>";
-            foreach ($result as $row) {
-                echo "<tr>";
-                echo "<td><input type='checkbox' class='orderCheckbox' name='selected_order' value='" . htmlspecialchars($row['order_id'], ENT_QUOTES, 'UTF-8') . "'></td>";
-                echo "<td>" . htmlspecialchars($row['restaurant_name'], ENT_QUOTES, 'UTF-8') . "</td>";
-                echo "<td>" . htmlspecialchars($row['restaurant_address'], ENT_QUOTES, 'UTF-8') . "</td>";
-                echo "<td>" . htmlspecialchars($row['order_address'], ENT_QUOTES, 'UTF-8') . "</td>";
-                echo "<td>" . htmlspecialchars($row['username'], ENT_QUOTES, 'UTF-8') . "</td>";
-                echo "<td>" . htmlspecialchars($row['phone_number'], ENT_QUOTES, 'UTF-8') . "</td>";
-                //echo "<td>" . htmlspecialchars($row['delivery_fee'], ENT_QUOTES, 'UTF-8') . "</td>";
-                echo "</tr>";
-            }
-            echo "</table>";
-            echo "<input type='submit' value='Submit'>"; // 提交按鈕
-            echo "</form>";
+            echo "<!DOCTYPE html>";
+
+            echo "<html lang='en'>";  
+            echo "<head>";
+            echo "<meta name='viewport' content='width=device-width, initial-scale=1.0' />";
+            echo "<meta charset='UTF-8'>";
+            echo "<title>U-DBer Ordering System</title>";
+            echo "<link rel='stylesheet' href='/css/search.css'>";
+            echo "<link rel='preconnect' href='https://fonts.googleapis.com'>";
+            echo "<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>";
+            echo "<link href='https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Dancing+Script&family=Rubik+Doodle+Shadow&family=Rubik+Scribble&display=swap' rel='stylesheet'>";
+            echo "</head>";
+            
+            echo "<body>";
+            echo "<div class='restaurant-container'>";
+                echo "<div class='title'>Orders Availiable</div>";
+                if ($result) {
+                    echo "<form action='update_order.php' method='post'>"; // 開始表單
+                    echo "<table class='restaurant-filter-table'>";
+                    echo "<thead>";
+                    echo "<tr>";
+                    echo "<th></th>"; // 空欄位用於勾選框
+                    echo "<th>Restaurant Name</th>";
+                    echo "<th>Restaurant Address</th>";
+                    echo "<th>Customer</th>";
+                    echo "<th>Customer Address</th>";
+                    echo "<th>Phone Number</th>";
+                    echo "<th>Order</th>";
+                    echo "</tr>";
+                    echo "</thead>";
+                    echo "<tbody>";
+                    foreach ($result as $row) {
+                        echo "<tr>";
+                        echo "<td><input type='checkbox' name='selected_order' value='" . htmlspecialchars($row['order_id'], ENT_QUOTES, 'UTF-8') . "'></td>";
+                        echo "<td>" . htmlspecialchars($row['restaurant_name'], ENT_QUOTES, 'UTF-8') . "</td>";
+                        echo "<td>" . htmlspecialchars($row['restaurant_address'], ENT_QUOTES, 'UTF-8') . "</td>";
+                        echo "<td>" . htmlspecialchars($row['username'], ENT_QUOTES, 'UTF-8') . "</td>";
+                        echo "<td>" . htmlspecialchars($row['order_address'], ENT_QUOTES, 'UTF-8') . "</td>";
+                        echo "<td>" . htmlspecialchars($row['phone_number'], ENT_QUOTES, 'UTF-8') . "</td>";
+                        echo "<td>" . htmlspecialchars($row['user_order'], ENT_QUOTES, 'UTF-8') . "</td>";
+                        echo "</tr>";
+                    }
+                    echo "</tbody>";
+                    echo "</table>";
+                    echo "<input type='submit' value='I want this'>"; // 提交按鈕
+                    echo "</form>"; // 結束表單
+                } else {
+                    echo "<p>No order found.</p>";
+                }
+            echo "</div>";
+            echo "</body>";
+            echo "</html>";
         }
     } catch(PDOException $e) {
         die($e->getMessage());

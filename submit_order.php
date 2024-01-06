@@ -34,17 +34,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Show success message
             echo "<!DOCTYPE html>";
-
-            echo "<html lang='en'>";  
+            echo "<html lang='en'>";
             echo "<head>";
             echo "<meta name='viewport' content='width=device-width, initial-scale=1.0' />";
             echo "<meta charset='UTF-8'>";
             echo "<title>U-DBer Ordering System</title>";
-            echo "<link rel='stylesheet' href='/css/style.css'>";
-            echo "<link rel='stylesheet' href='/css/style.css'>";
-            echo "<link rel='preconnect' href='https://fonts.googleapis.com'>";
-            echo "<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>";
-            echo "<link href='https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Dancing+Script&family=Rubik+Doodle+Shadow&family=Rubik+Scribble&display=swap' rel='stylesheet'>";
+            echo "<link rel='stylesheet' href='/css/send.css'>";
+            echo "<link rel='preconnect' href='https://fonts.googleapis.com%27%3E/";
+            echo "<link rel='preconnect' href='https://fonts.gstatic.com/' crossorigin>";
+            echo "<link href='https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Dancing+Script&family=Poppins&display=swap' rel='stylesheet'>";
+            echo "<link href='https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&display=swap' rel='stylesheet'>";
             echo "</head>";
             
             echo "<body>";
@@ -53,9 +52,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "<div class='auth'>";
                         echo "<a href='index.html' class='previous_page'> Back to MENU </a>";
                     echo "</div>";
-                    echo "<div class='restaurant-container'>";
-                    echo "<div class='order_res'> Order for restaurant " . htmlspecialchars($restaurantName) . " submitted</div>";
-                    echo "<div class='content'>orders: '" . htmlspecialchars($user_order) . "'    has been successfully submitted.</div>";
+                echo "</div>";
+                echo "<div class='restaurant-container'>";
+                    echo "<div class='order_res'> Restaurant :  " . htmlspecialchars($restaurantName) . "</div>";
+                    echo "<div class='content'>Orders : " . htmlspecialchars($user_order) . "    <br> <div class='adjust'>has been successfully submitted.</div></div>";
                 echo "</div>";
             echo "</body>";
             echo "</html>";
