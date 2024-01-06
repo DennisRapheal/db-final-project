@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Prepare the SELECT statement based on the input
-        $stmt = $pdo->prepare("SELECT * FROM customer WHERE username = :username AND password = :password");
+        $stmt = $pdo->prepare("SELECT * FROM dber WHERE username = :username AND password = :password");
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':password', $password);
 

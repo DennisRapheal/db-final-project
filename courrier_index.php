@@ -3,7 +3,7 @@
     // Specify SQL command
     $get_order = "SELECT * FROM orders 
                 INNER JOIN restaurant ON restaurant.restaurant_id = orders.restaurant_id 
-                INNER JOIN customer ON customer.user_id = orders.user_id 
+                INNER JOIN dber ON dber.user_id = orders.user_id 
                 WHERE orders.status = 'pending'; ";
 
     try {
@@ -59,7 +59,7 @@
                 // Show a confirmation message and redirect to index.html
                 alert("Confirmed the order with ID: " + selectedOrderId);
                 // Use the selectedOrderId in your update logic
-                window.location.href = "index.html";
+                window.location.href = "delivery_record.php";
             } else {
                 // Show an error message
                 alert("You must choose exactly one order at a time.");

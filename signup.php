@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Check if the username is already taken
-        $checkUsernameStmt = $pdo->prepare("SELECT * FROM customer WHERE username = :username");
+        $checkUsernameStmt = $pdo->prepare("SELECT * FROM dber WHERE username = :username");
         $checkUsernameStmt->bindParam(':username', $username);
         $checkUsernameStmt->execute();
 
@@ -25,12 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($existingUser) {
             echo "Username is already existed. Please choose a different username.";
         } else {
-            // Insert user information into the "customer" table
-            $insertCustomerStmt = $pdo->prepare("INSERT INTO customer (username, password, phone_number) VALUES (:username, :password, :phone_number)");
-            $insertCustomerStmt->bindParam(':username', $username);
-            $insertCustomerStmt->bindParam(':password', $password);
-            $insertCustomerStmt->bindParam(':phone_number', $phone_number);
-            $insertCustomerStmt->execute();
+            // Insert user information into the "user" table
+            $insertuserStmt = $pdo->prepare("INSERT INTO dber (username, password, phone_number) VALUES (:username, :password, :phone_number)");
+            $insertuserStmt->bindParam(':username', $username);
+            $insertuserStmt->bindParam(':password', $password);
+            $insertuserStmt->bindParam(':phone_number', $phone_number);
+            $insertuserStmt->execute();
 
             echo "<!DOCTYPE html>";
 
