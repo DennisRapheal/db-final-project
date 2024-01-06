@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<tbody>";
                 foreach ($result as $row) {
                     echo "<tr>";
-                    echo "<td><input type='checkbox' name='selected_restaurant' value='" . htmlspecialchars($row['restaurant_ID'], ENT_QUOTES, 'UTF-8') . "'></td>";
+                    echo "<td><input type='checkbox' name='selected_restaurant' value='" . htmlspecialchars($row['restaurant_id'], ENT_QUOTES, 'UTF-8') . "'></td>";
                     echo "<td>" . htmlspecialchars($row['restaurant_name'], ENT_QUOTES, 'UTF-8') . "</td>";
                     echo "<td>" . htmlspecialchars($row['Open_hour'], ENT_QUOTES, 'UTF-8') . "</td>";
                     echo "<td>" . htmlspecialchars($row['Close_hour'], ENT_QUOTES, 'UTF-8') . "</td>";

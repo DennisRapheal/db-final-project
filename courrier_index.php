@@ -1,13 +1,7 @@
 <?php
     require_once('connection.php');
     // Specify SQL command
-    $get_order = "SELECT * 
-                FROM order 
-                    JOIN restaurant
-                    ON restaurant.restaurant_id = order.restaurant_id
-                    JOIN customer
-                    ON customer.user_id = order.user_id;
-                WHERE order.status = 'pending'; ";
+    $get_order = "SELECT * FROM orders INNER JOIN restaurant ON restaurant.restaurant_id = orders.restaurant_id INNER JOIN customer ON customer.user_id = orders.user_id WHERE orders.status = 'pending'; ";
 
     try {
         $stmt = $conn->prepare($get_order);
@@ -72,7 +66,7 @@
 </script>
 
 <?php
-require_once('connection.php');
+//require_once('connection.php');
 
 // Assuming you have a variable $orderId with the order ID you want to update
 $orderId = $selectedOrderId; // Replace with your actual order ID
@@ -82,7 +76,7 @@ $newStatus = 'done'; // Replace with your actual new status value
 
 try {
     // Prepare the SQL query
-    $updateQuery = "UPDATE order SET status = :newStatus WHERE order_id = :orderId";
+    $updateQuery = "UPDATE orders SET status = :newStatus WHERE orders.order_id = :orderId; ";
     $stmt = $conn->prepare($updateQuery);
 
     // Bind parameters
@@ -98,7 +92,7 @@ try {
     if ($rowCount > 0) {
         echo "Update successful!";
     } else {
-        echo "No rows were updated. The specified order ID may not exist or the status is already set to the provided value.";
+        echo "The specified order ID may not exist or the status is already set to the provided value.";
     }
 } catch(PDOException $e) {
     die("Error: " . $e->getMessage());
