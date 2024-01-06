@@ -25,6 +25,8 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+  <!-- Link to your external JavaScript file -->
+  <script src="/js/index.js"></script>
 
 </head>
 
@@ -95,7 +97,7 @@
                 Save More, Earn More - Your Choice, Our Promise!<br>
                 “Have already served over 5 happy customers"
               </p>
-              <a href="">
+              <a onclick="scrollToSection()">
                 Contact Us
               </a>
             </div>
@@ -417,7 +419,7 @@
 
   <!-- contact section -->
 
-  <section class="contact_section layout_padding">
+  <section class="contact_section layout_padding" id="contact_us">
     <div class="container">
       <div class="heading_container">
         <h2>
@@ -428,16 +430,16 @@
         <div class="col-md-6">
           <form action="">
             <div>
-              <input type="text" placeholder="Name" />
+              <input type="text" placeholder="Name" id="reviewer" />
             </div>
             <div>
-              <input type="text" placeholder="Phone Number" />
+              <input type="text" placeholder="Phone Number" id="reviewer_phonenumber" />
             </div>
             <div>
-              <input type="email" placeholder="Email" />
+              <input type="email" placeholder="Email" id="reviewInput" />
             </div>
             <div>
-              <input type="text" class="message-box" placeholder="Message" />
+              <input type="text" class="message-box" placeholder="Message" id="reviewInput" />
             </div>
             <div class="d-flex ">
               <button>

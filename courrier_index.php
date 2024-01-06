@@ -1,7 +1,10 @@
 <?php
     require_once('connection.php');
     // Specify SQL command
-    $get_order = "SELECT * FROM orders INNER JOIN restaurant ON restaurant.restaurant_id = orders.restaurant_id INNER JOIN customer ON customer.user_id = orders.user_id WHERE orders.status = 'pending'; ";
+    $get_order = "SELECT * FROM orders 
+                INNER JOIN restaurant ON restaurant.restaurant_id = orders.restaurant_id 
+                INNER JOIN customer ON customer.user_id = orders.user_id 
+                WHERE orders.status = 'pending'; ";
 
     try {
         $stmt = $conn->prepare($get_order);
