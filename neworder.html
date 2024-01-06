@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>U-Der</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <!-- font awesome style -->
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+</head>
+
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="header_top">
+        <div class="container-fluid">
+          <div class="contact_nav">
+            <a href="">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <span>
+                Call : +886 1234567890
+              </span>
+            </a>
+            <a href="">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <span>
+                Email : udber@gmail.com
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="header_bottom">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container ">
+            <a class="navbar-brand" href="index.html">
+              <span>
+                U-Der
+              </span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class=""> </span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ">
+                <li class="nav-item active">
+                  <a class="nav-link" href="signup.html">Sign Up<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="login.html">Log In</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <!-- end header section -->
+
+    <!-- neworder section -->
+    <div class="scroll">
+      <section class="service_section layout_padding">
+        <div class="container">
+            <div class="background">
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+            <form action="select_restaurant.php" method="post" class="neworderform">
+                <h3>New Order</h3>
+        
+                <label for="restaurant-name">Restaurant Name</label>
+                <input type="text" placeholder="Optional" id="restaurant-name" name="restaurantName">
+                
+                <label for="kind">Kind</label>
+                <fieldset>
+                    <label><input type="checkbox" name="kind" value="bbq"> BBQ</label>
+                    <label><input type="checkbox" name="kind" value="local_food"> Local Food</label>
+                    <label><input type="checkbox" name="kind" value="fried"> Fried</label>
+                </fieldset>
+        
+                <label for="region">Region</label>
+                <select id="region" name="region">
+                    <option value="northern">&nbsp Northern</option>
+                    <option value="eastern">&nbsp Eastern</option>
+                </select>
+        
+                <label for="rating">Rating</label>
+                <div class="rating-container">
+                    <input type="range" id="rating" name="rating" min="1" max="5" step="1">
+                    <span id="ratingValue">3</span><span>/5</span>
+                </div>
+  
+        
+                <button class="submitbutton">Submit</button>
+        
+            </form>
+          </div>
+      </section>
+    </div>
+    <!-- end neworder section -->
+  
+    </div>
+      <script>
+          // 为滑块添加事件监听器
+          document.addEventListener('DOMContentLoaded', function() {
+              var slider = document.getElementById('rating');
+              var output = document.getElementById('ratingValue');
+              output.textContent = slider.value; // 显示默认的滑块值
+  
+              slider.oninput = function() {
+                  output.textContent = this.value; // 当滑块被拖动时更新数值
+              }
+          });
+      </script>
+</body>
+
+</html>
