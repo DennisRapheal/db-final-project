@@ -4,7 +4,7 @@ session_start();
 require_once('connection.php');
 $courier_id = $_SESSION['user_id'];
 // Assuming you have a variable $orderId with the order ID you want to update
-$order_id = $selectedOrderId; // Replace with your actual order ID
+$order_id = $_POST['selected_order']; // Replace with your actual order ID
 
 // Assuming you have a variable $newStatus with the new status value you want to set
 $newStatus = "done"; // Replace with your actual new status value

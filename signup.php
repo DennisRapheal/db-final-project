@@ -101,8 +101,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<div class='signupform'>";
             echo "<h3>User registration successfully.<br>You can now log in.</h3>";
             echo "<div class='social'>";
-            echo "<a href = 'index.html' class='go'> Back to MENU</a>";
-            echo "<a href = 'login.html' class='fb'> Go to LOGIN</a>";
+            echo "<a href = 'index.html'><div class='go'>Back to MENU</div></a>";
+            echo "<a href = 'login.html'><div class='fb'> Go to LOGIN</div><a>";
             echo "</div>";
             echo "</div>";
             echo "</div>";
