@@ -106,6 +106,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "</table>";
                 echo "<label for='order'>Order: </label>";
                 echo "<input type='text' id='user_order' name='user_order'>";
+                echo "<label for='order_address'>Order Address: </label>";
+                echo "<input type='text' id='user_order' name='order_address'>";
+                echo "<label for='order'>delivery_fee </label>";
+                echo "<input type='text' id='user_order' name='delivery_fee'>";
                 echo "<input type='submit' value='Submit'>"; // 提交按鈕
                 echo "</form>"; // 結束表單
             } else {
