@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once('connection.php');
 // Check if the form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
@@ -8,14 +9,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $order_address = isset($_POST['order_address']) ? $_POST['order_address'] : '';
     $delivery_fee = isset($_POST['delivery_fee']) ? $_POST['delivery_fee'] : '';
     $user_id = $_SESSION['user_id'];
-    $dsn = "pgsql:host=db-finalproject.cm8ih0pvjx1c.us-east-1.rds.amazonaws.com;dbname=db-finalproject;user=postgres;password=ufpi6vd5eBSEy99uumcX";
+    $submit_order = "INSERT INTO orders (user_id, user_order, restaurant_id, order_address, delivery_fee, status, courier_id) VALUES (:user_id, :user_order, :restaurant_id, :order_address,, :delivery_fee, 'pending', NULL)";
 
     // Check if a restaurant was selected
     if ($selectedRestaurant && $user_order != '') {
         try {
-            $pdo = new PDO($dsn);
             // Prepare the INSERT statement
-            $stmt = $pdo->prepare("INSERT INTO orders (user_id, user_order, restaurant_id, order_address, delivery_fee, status, courier_id) VALUES (:user_id, :user_order, :restaurant_id, :order_address, :delivery_fee, 'pending', NULL)");
+            $stmt = $conn->prepare($submit_order);
             //generate order id 
             // Bind parameters to the statement
             $stmt->bindParam(':restaurant_id', $selectedRestaurant, PDO::PARAM_INT);
@@ -26,8 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //$stmt->bindParam(':delivery_fee', $delivery_fee, PDO::PARAM_INT);
             // Execute the statement
             $stmt->execute();
+            $select_reataurant = "SELECT restaurant_name FROM restaurant WHERE restaurant_id = :restaurant_id";
 
-            $restaurantname_stmt = $pdo->prepare("SELECT restaurant_name FROM restaurant WHERE restaurant.restaurant_id = :restaurant_id");
+            $restaurantname_stmt = $conn->prepare($select_reataurant);
             $restaurantname_stmt->bindParam(':restaurant_id', $selectedRestaurant, PDO::PARAM_INT);
             $restaurantname_stmt->execute();
             $restaurantName = $restaurantname_stmt->fetch(PDO::FETCH_ASSOC)['restaurant_name'];

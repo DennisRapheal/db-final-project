@@ -1,5 +1,4 @@
 <?php
-	
 	// Initialize connection variables.
 	$host = 'db-finalproject.cm8ih0pvjx1c.us-east-1.rds.amazonaws.com';
 	$dbname = 'db-finalproject';

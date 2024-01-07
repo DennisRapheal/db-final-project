@@ -6,7 +6,7 @@ $courier_id = $_SESSION['user_id'];
 $order_id = $_POST['selected_order']; // Replace with your actual order ID
 
 // Assuming you have a variable $newStatus with the new status value you want to set
-$newStatus = "delivering"; // Replace with your actual new status value
+$newStatus = "done"; // Replace with your actual new status value
 
 try {
     // Prepare the SQL query
@@ -23,16 +23,9 @@ try {
     // Check if the update was successful
     $rowCount = $stmt->rowCount(); // Number of affected rows
 
-    $updateQuery2 = "UPDATE orders SET courier_id = :courier_id WHERE orders.order_id = :order_id; ";
-    $stmt2 = $conn->prepare($updateQuery2);
-
-    // Bind parameters
-    $stmt2->bindParam(':courier_id', $courier_id, PDO::PARAM_INT);
-    $stmt2->bindParam(':order_id', $order_id, PDO::PARAM_INT);
-    $stmt2->execute();
 
     if ($rowCount > 0) {
-        header("Location: delivering_order.php.html");
+        header("Location: history_order.php.html");
         exit();
     } else {
         echo "The specified order ID may not exist or the status is already set to the provided value.";

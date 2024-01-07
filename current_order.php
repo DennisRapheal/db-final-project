@@ -2,18 +2,18 @@
     session_start();
     require_once('connection.php');
     // Specify SQL command
-    $get_order = "SELECT * FROM orders 
+    $current_order = "SELECT * FROM orders 
                 INNER JOIN restaurant ON restaurant.restaurant_id = orders.restaurant_id 
-                INNER JOIN dber ON dber.user_id = orders.user_id 
-                WHERE orders.status = 'pending'; ";
-    $courier_id = $_SESSION['user_id'];
+                INNER JOIN dber ON dber.user_id = orders.courier_id 
+                WHERE orders.status = 'pending' or 'delivering'; ";
+    $user_id = $_SESSION['user_id'];
     try {
         $stmt = $conn->prepare($get_order);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if (empty($result)) {
-            echo "No order submitted yet.";
+            echo "All orders have been done.";
         } else {
             echo "<!DOCTYPE html>";
 
@@ -32,17 +32,16 @@
             echo "<div class='restaurant-container'>";
                 echo "<div class='title'>Orders Availiable</div>";
                 if ($result) {
-                    echo "<form action='update_order.php' method='post'>"; // 開始表單
+                    echo "<form action='update_current_order.php' method='post'>"; // 開始表單
                     echo "<table class='restaurant-filter-table'>";
                     echo "<thead>";
                     echo "<tr>";
                     echo "<th></th>"; // 空欄位用於勾選框
                     echo "<th>Restaurant Name</th>";
-                    echo "<th>Restaurant Address</th>";
-                    echo "<th>Customer</th>";
-                    echo "<th>Customer Address</th>";
-                    echo "<th>Phone Number</th>";
                     echo "<th>Order</th>";
+                    echo "<td>Courier</td>";
+                    echo "<td>Courier Phone Number</td>";
+                    echo "<td>Status</td>";
                     echo "</tr>";
                     echo "</thead>";
                     echo "<tbody>";
@@ -50,16 +49,15 @@
                         echo "<tr>";
                         echo "<td><input type='checkbox' name='selected_order' value='" . htmlspecialchars($row['order_id'], ENT_QUOTES, 'UTF-8') . "'></td>";
                         echo "<td>" . htmlspecialchars($row['restaurant_name'], ENT_QUOTES, 'UTF-8') . "</td>";
-                        echo "<td>" . htmlspecialchars($row['restaurant_address'], ENT_QUOTES, 'UTF-8') . "</td>";
+                        echo "<td>" . htmlspecialchars($row['userorder'], ENT_QUOTES, 'UTF-8') . "</td>";
                         echo "<td>" . htmlspecialchars($row['username'], ENT_QUOTES, 'UTF-8') . "</td>";
-                        echo "<td>" . htmlspecialchars($row['order_address'], ENT_QUOTES, 'UTF-8') . "</td>";
                         echo "<td>" . htmlspecialchars($row['phone_number'], ENT_QUOTES, 'UTF-8') . "</td>";
-                        echo "<td>" . htmlspecialchars($row['user_order'], ENT_QUOTES, 'UTF-8') . "</td>";
+                        echo "<td>" . htmlspecialchars($row['status'], ENT_QUOTES, 'UTF-8') . "</td>";
                         echo "</tr>";
                     }
                     echo "</tbody>";
                     echo "</table>";
-                    echo "<input type='submit' value='I want this'>"; // 提交按鈕
+                    echo "<input type='submit' value='I get it'>"; // 提交按鈕
                     echo "</form>"; // 結束表單
                 } else {
                     echo "<p>No order found.</p>";

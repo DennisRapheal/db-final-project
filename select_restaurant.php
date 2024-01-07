@@ -1,4 +1,5 @@
 <?php
+require_once('connection.php');
 // Check if the form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
@@ -7,50 +8,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $region = isset($_POST['region']) ? $_POST['region'] : '';
     $rating = isset($_POST['rating']) ? $_POST['rating'] : '';
 
-    $dsn = "pgsql:host=db-finalproject.cm8ih0pvjx1c.us-east-1.rds.amazonaws.com;dbname=db-finalproject;user=postgres;password=ufpi6vd5eBSEy99uumcX";
-
     try {
-        // Create a new PDO instance
-        $pdo = new PDO($dsn);
-
-        // Set error mode
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         // Prepare the SELECT statement based on the input
         if($restaurantName != '') {
-            $stmt = $pdo->prepare("SELECT * FROM restaurant WHERE restaurant_name = :restaurantName");
-            $stmt->bindParam(':restaurantName', $restaurantName);
-        }else if($kind != '' && $region != '' && $rating != '') {
+            $select_reataurant1 = "SELECT * FROM restaurant WHERE restaurant_name = :restaurant_name";
+            $stmt = $conn->prepare($select_reataurant1);
+            $stmt->bindParam(':restaurant_name', $restaurantName);
+        }else if($kind != '' && $region != 'all_region' && $rating != '') {
             // Assuming kind, region, and rating are provided, adjust if they're optional
-            $stmt = $pdo->prepare("SELECT * FROM restaurant WHERE kind = :kind AND region = :region AND rating >= :rating");
+            $select_restaurant2 = "SELECT * FROM restaurant WHERE kind = :kind AND region = :region AND rating >= :rating";
+            $stmt = $conn->prepare($select_reataurant2);
             $stmt->bindParam(':kind', $kind);
             $stmt->bindParam(':region', $region);
             $stmt->bindParam(':rating', $rating);
-        }else if($kind != '' && $region != '') {
-            $stmt = $pdo->prepare("SELECT * FROM restaurant WHERE kind = :kind AND region = :region");
-            $stmt->bindParam(':kind', $kind);
-            $stmt->bindParam(':region', $region);
-        }else if($kind != '' && $rating != '') {
-            $stmt = $pdo->prepare("SELECT * FROM restaurant WHERE kind = :kind AND rating >= :rating");
+        }else if($kind != '' && $region == 'all_region') {
+            $stmt = $conn->prepare("SELECT * FROM restaurant WHERE kind = :kind AND region = :region");
             $stmt->bindParam(':kind', $kind);
             $stmt->bindParam(':rating', $rating);
-        }else if($region != '' && $rating != '') {
-            $stmt = $pdo->prepare("SELECT * FROM restaurant WHERE region = :region AND rating >= :rating");
-            $stmt->bindParam(':region', $region);
-            $stmt->bindParam(':rating', $rating);
-        }else if($kind != '') {
-            $stmt = $pdo->prepare("SELECT * FROM restaurant WHERE kind = :kind");
-            $stmt->bindParam(':kind', $kind);
-        }else if($region != '') {
-            $stmt = $pdo->prepare("SELECT * FROM restaurant WHERE region = :region");
-            $stmt->bindParam(':region', $region);
-        }else if($rating != '') {
-            $stmt = $pdo->prepare("SELECT * FROM restaurant WHERE rating >= :rating");
-            $stmt->bindParam(':rating', $rating);
-        }else {
-            $stmt = $pdo->prepare("SELECT * FROM restaurant");
         }
-
         // Execute the statement
         $stmt->execute();
 

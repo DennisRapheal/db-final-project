@@ -1,22 +1,16 @@
 <?php
-
+require_once('connection.php');
 // Check if the form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
     $username = isset($_POST['username']) ? $_POST['username'] : '';
     $password = isset($_POST['password']) ? $_POST['password'] : '';
     $phone_number = isset($_POST['phone_number']) ? $_POST['phone_number'] : '';
-    $dsn = "pgsql:host=db-finalproject.cm8ih0pvjx1c.us-east-1.rds.amazonaws.com;dbname=db-finalproject;user=postgres;password=ufpi6vd5eBSEy99uumcX";
 
     try {
-        // Create a new PDO instance
-        $pdo = new PDO($dsn);
-
-        // Set error mode
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         // Check if the username is already taken
-        $checkUsernameStmt = $pdo->prepare("SELECT * FROM dber WHERE username = :username");
+        $checkUser = "SELECT * FROM dber WHERE username = :username";
+        $checkUsernameStmt = $conn->prepare($checkUser);
         $checkUsernameStmt->bindParam(':username', $username);
         $checkUsernameStmt->execute();
 
@@ -26,7 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Username is already existed. Please choose a different username.";
         } else {
             // Insert user information into the "user" table
-            $insertuserStmt = $pdo->prepare("INSERT INTO dber (username, password, phone_number) VALUES (:username, :password, :phone_number)");
+            $insertUser = "INSERT INTO dber (username, password, phone_number) VALUES (:username, :password, :phone_number)";
+            $insertuserStmt = $conn->prepare($insertUser);
             $insertuserStmt->bindParam(':username', $username);
             $insertuserStmt->bindParam(':password', $password);
             $insertuserStmt->bindParam(':phone_number', $phone_number);
@@ -99,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<div class='shape'></div>";
             echo "</div>";
             echo "<div class='signupform'>";
-            echo "<h3>User registration successfully.<br>You can now log in.</h3>";
+            echo "<h4>User registration successfully.<br>You can now log in.</h4>";
             echo "<div class='social'>";
             echo "<a href = 'index.html'><div class='go'>Back to MENU</div></a>";
             echo "<a href = 'login.html'><div class='fb'> Go to LOGIN</div><a>";

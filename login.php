@@ -1,13 +1,11 @@
 <?php
 session_start();
-
+require_once('connection.php');
 // Check if the form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
     $username = isset($_POST['username']) ? $_POST['username'] : '';
     $password = isset($_POST['password']) ? $_POST['password'] : '';
-
-    $dsn = "pgsql:host=db-finalproject.cm8ih0pvjx1c.us-east-1.rds.amazonaws.com;dbname=db-finalproject;user=postgres;password=ufpi6vd5eBSEy99uumcX";
 
     try {
         // Create a new PDO instance
@@ -17,7 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Prepare the SELECT statement based on the input
-        $stmt = $pdo->prepare("SELECT * FROM dber WHERE username = :username AND password = :password");
+        $selectUser = "SELECT * FROM dber WHERE username = :username AND password = :password";
+        $stmt = $conn->prepare($selectUser);
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':password', $password);
 

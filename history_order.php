@@ -1,18 +1,16 @@
 <?php
 session_start(); // Start the session at the beginning of the script
+require_once('connection.php');
 try {
     // Your database connection
-    $dsn = "pgsql:host=db-finalproject.cm8ih0pvjx1c.us-east-1.rds.amazonaws.com;dbname=db-finalproject;user=postgres;password=ufpi6vd5eBSEy99uumcX";
-    $pdo = new PDO($dsn);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+    
     // Check if user_id is set in the session
     if (isset($_SESSION['user_id'])) {
         $user_id = $_SESSION['user_id'];
-
+        $history_order = "SELECT * FROM orders WHERE user_id = :user_id AND status = 'done' ORDER BY order_id DESC;";
         // Use $user_id in your query or operations
         // For example, if you want to fetch orders for this user:
-        $stmt = $pdo->prepare("SELECT * FROM orders WHERE user_id = :user_id");
+        $stmt = $conn->prepare($history_order);
         $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
