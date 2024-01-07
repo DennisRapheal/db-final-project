@@ -35,6 +35,39 @@ try {
         echo "</head>";
 
         echo "<body>";
+
+        echo "<header class='header_section'>";
+        echo "<div class='header_top'>";
+            echo "<div class='container-fluid'>";
+                echo "<div class='contact_nav'>";
+                    echo "<a href=''>";
+                        echo "<i class='fa fa-phone' aria-hidden='true'></i>";
+                        echo "<span>";
+                        echo "Call : +886 1234567890";
+                        echo "</span>";
+                    echo "</a>";
+                    echo "<a href=''>";
+                        echo "<i class='fa fa-envelope' aria-hidden='true'></i>";
+                        echo "<span>";
+                        echo "Email : udber@gmail.com";
+                        echo "</span>";
+                    echo "</a>";
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+        echo "<div class='header_bottom'>";
+            echo "<div class='container-fluid'>";
+                echo "<nav class='navbar navbar-expand-lg custom_nav-container '>";
+                    echo "<a class='navbar-brand' href='index.html'>";
+                        echo "<span>";
+                        echo "U-Der";
+                        echo "</span>";
+                    echo "</a>";
+                echo "</nav>";
+            echo "</div>";
+        echo "</div>";
+    echo "</header>";
+
         echo "<div class='history-restaurant-container'>";
             echo "<div class='title'>Delivering Orders</div>";
             echo "<table class='restaurant-filter-table'>";

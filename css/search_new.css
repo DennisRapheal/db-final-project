@@ -1,0 +1,306 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    background-color:#93b9f56b;
+}
+
+a{ text-decoration:none} a:hover{ text-decoration:none}
+
+.header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: auto; /* Centers the container horizontally */
+    margin-right: auto; /* Centers the container horizontally */
+    padding: 5px;
+    width: 95%;
+}
+
+
+.restaurant-container {
+    max-width: 800px; /* 或者根据您的布局需要 */
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    background-color: #fff; /* 白色背景 */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* 细微的阴影效果 */
+    border-radius: 20px; /* 圆角边框 */
+}
+
+.title {
+    font-family: 'Rubik Scribble', cursive; /* 使用引入的字体 */
+    text-align: center;
+    color: #000; /* 改為深色字體以與白色背景形成對比 */
+    font-size: 25px; /* 放大字體大小 */
+    font-weight: bold; /* 字體加粗 */
+    margin-bottom: 10px;
+}
+
+.order_res {
+    font-family: 'Rubik Scribble', cursive; /* 使用引入的字体 */
+    text-align: center;
+    color: #000; /* 改為深色字體以與白色背景形成對比 */
+    font-size: 25px; /* 放大字體大小 */
+    font-weight: bold; /* 字體加粗 */
+    margin-bottom: 10px;
+}
+
+.content {
+    font-family: 'Abril Fatface', cursive; /* 使用引入的字体 */
+    text-align: center;
+    color: #000; /* 改為深色字體以與白色背景形成對比 */
+    font-size: 15px; /* 放大字體大小 */
+    font-weight: bold; /* 字體加粗 */
+    margin-bottom: 10px;
+}
+
+.restaurant-filter-table {
+    width: 100%; /* 表格宽度填满容器 */
+    border-collapse: collapse; /* 表格边框合并 */
+}
+
+.restaurant-filter-table th,
+.restaurant-filter-table td {
+    text-align: left; /* 文本左对齐 */
+    padding: 8px; /* 单元格内边距 */
+    border-bottom: 1px solid #ddd; /* 单元格底部边框 */
+}
+
+.restaurant-filter-table th {
+    background-color: #4781ddb0; /* 标题背景颜色 */
+    color: white; /* 标题文字颜色 */
+    border-radius: 5px;
+    font-family: 'Aberil Fatface', cursive;
+    font-weight: bold;
+}
+
+.restaurant-filter-table tr:nth-child(even) {
+    background-color: #f2f2f2; /* 交替行背景颜色 */
+}
+
+.restaurant-filter-table tr:hover {
+    background-color: #fdd; /* 悬停行背景颜色 */
+}
+
+input[type='text'] {
+    width: 90%; /* Full width */
+    padding: 10px; /* Some padding */
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: inline-block; /* Inline-block */
+    border: none; /* No border */
+    border-radius: 3px;
+    background: #f1f1f1; /* Light grey background */
+}
+
+input[type='text']:focus {
+    background-color: #ddd; /* Darker grey when focused */
+    outline: none; /* No outline */
+}
+
+#user_order {
+    height: 100px;
+}
+
+#order_address {
+    margin-left: 1%;
+    width: 96%;
+}
+
+#delivery_fee {
+    width: 10%;
+}
+
+input[type='submit'] {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 14px 20px; /* Padding */
+    margin: 8px 0; /* Margin */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer cursor on hover */
+    width: 100%; /* Full width */
+}
+
+input[type='submit']:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+
+/* header section*/
+.hero_area {
+    position: relative;
+    background-color: #d1e3ff;
+  }
+  
+  .header_section .container-fluid {
+    padding-right: 25px;
+    padding-left: 25px;
+  }
+  
+  .header_section .header_top {
+    padding: 15px 0;
+    background-color: #000000;
+  }
+  
+  .header_section .header_top .contact_nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  
+  .header_section .header_top .contact_nav a {
+    color: #ffffff;
+  }
+  
+  .header_section .header_top .contact_nav a i {
+    color: #ff8a1d;
+  }
+  
+  .header_section .header_bottom {
+    padding: 10px 0;
+  }
+  
+  .navbar-brand {
+    padding: 0;
+    margin: 0;
+    color: #000000;
+    font-weight: bold;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .navbar-brand span {
+    font-family: 'Dancing Script', cursive;
+    color: #0355cc;
+    text-transform: uppercase;
+  }
+  
+  .navbar-brand span::after {
+    font-family: 'Arial', sans-serif;
+    content: "\2122"; /* Unicode 字符 ™ */
+    font-size: 0.5em; /* 字号小于 logo 文本 */
+    vertical-align: super; /* 使符号稍微上升，对齐到上方 */
+    margin-left: 0px; /* 在 logo 文本和 ™ 符号之间添加一些空间 */
+  }
+  
+  .custom_nav-container {
+    padding: 0;
+  }
+  
+  .custom_nav-container .navbar-nav {
+    margin-left: auto;
+  }
+  
+  .custom_nav-container .navbar-nav .nav-item .nav-link {
+    padding: 10px 25px;
+    color: #000000;
+    text-align: center;
+  }
+  
+  .custom_nav-container .navbar-nav .nav-item:hover .nav-link, .custom_nav-container .navbar-nav .nav-item.active .nav-link {
+    color: #0355cc;
+  }
+  
+  .custom_nav-container .form-inline .nav_search-btn {
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    border: none;
+    color: #000000;
+  }
+  
+  .custom_nav-container .form-inline .nav_search-btn:hover {
+    color: #0355cc;
+  }
+  
+  .custom_nav-container .navbar-toggler {
+    outline: none;
+  }
+  
+  .custom_nav-container .navbar-toggler {
+    padding: 0;
+    width: 37px;
+    height: 42px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+  }
+  
+  .custom_nav-container .navbar-toggler span {
+    display: block;
+    width: 35px;
+    height: 4px;
+    background-color: #000000;
+    margin: 7px 0;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    position: relative;
+    border-radius: 5px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+  }
+  
+  .custom_nav-container .navbar-toggler span::before, .custom_nav-container .navbar-toggler span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #000000;
+    top: -10px;
+    border-radius: 5px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+  }
+  
+  .custom_nav-container .navbar-toggler span::after {
+    top: 10px;
+  }
+  
+  .custom_nav-container .navbar-toggler[aria-expanded="true"] {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+  
+  .custom_nav-container .navbar-toggler[aria-expanded="true"] span {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
+  
+  .custom_nav-container .navbar-toggler[aria-expanded="true"] span::before, .custom_nav-container .navbar-toggler[aria-expanded="true"] span::after {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+    top: 0;
+  }
+  
+  .custom_nav-container .navbar-toggler[aria-expanded="true"] .s-1 {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+    margin: 0;
+    margin-bottom: -4px;
+  }
+  
+  .custom_nav-container .navbar-toggler[aria-expanded="true"] .s-2 {
+    display: none;
+  }
+  
+  .custom_nav-container .navbar-toggler[aria-expanded="true"] .s-3 {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+    margin: 0;
+    margin-top: -4px;
+  }
+  
+  .custom_nav-container .navbar-toggler[aria-expanded="false"] .s-1,
+  .custom_nav-container .navbar-toggler[aria-expanded="false"] .s-2,
+  .custom_nav-container .navbar-toggler[aria-expanded="false"] .s-3 {
+    -webkit-transform: none;
+            transform: none;
+  }
