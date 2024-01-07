@@ -48,7 +48,7 @@ try {
                     echo "<tr>";
                     //query select
                     $restaurant_id = $row['restaurant_id'];
-                    $restaurant_name_stmt = $pdo->prepare("SELECT restaurant_name FROM restaurant WHERE restaurant_id = :restaurant_id");
+                    $restaurant_name_stmt = $conn->prepare("SELECT restaurant_name FROM restaurant WHERE restaurant_id = :restaurant_id");
                     $restaurant_name_stmt->bindParam(':restaurant_id', $restaurant_id, PDO::PARAM_INT);
                     $restaurant_name_stmt->execute();
                     $restaurant_name = $restaurant_name_stmt->fetchColumn();

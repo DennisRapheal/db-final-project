@@ -32,7 +32,7 @@ try {
     $stmt2->execute();
 
     if ($rowCount > 0) {
-        header("Location: delivering_order.php.html");
+        header("Location: delivering_order.php");
         exit();
     } else {
         echo "The specified order ID may not exist or the status is already set to the provided value.";

@@ -5,10 +5,10 @@
     $current_order = "SELECT * FROM orders 
                 INNER JOIN restaurant ON restaurant.restaurant_id = orders.restaurant_id 
                 INNER JOIN dber ON dber.user_id = orders.courier_id 
-                WHERE orders.status = 'pending' or 'delivering'; ";
+                WHERE orders.status = 'pending' or orders.status = 'delivering'; ";
     $user_id = $_SESSION['user_id'];
     try {
-        $stmt = $conn->prepare($get_order);
+        $stmt = $conn->prepare($current_order);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

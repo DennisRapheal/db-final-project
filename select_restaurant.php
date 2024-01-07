@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindParam(':region', $region);
             $stmt->bindParam(':rating', $rating);
         }else if($kind != '' && $region == 'all_region') {
-            $stmt = $conn->prepare("SELECT * FROM restaurant WHERE kind = :kind AND region = :region");
+            $stmt = $conn->prepare("SELECT * FROM restaurant WHERE kind = :kind AND rating= :rating");
             $stmt->bindParam(':kind', $kind);
             $stmt->bindParam(':rating', $rating);
         }
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<meta name='viewport' content='width=device-width, initial-scale=1.0' />";
         echo "<meta charset='UTF-8'>";
         echo "<title>U-DBer Ordering System</title>";
-        echo "<link rel='stylesheet' href='/oldcss/select_restaurant.css'>";
+        echo "<link rel='stylesheet' href='/css/search.css'>";
         echo "<link rel='preconnect' href='https://fonts.googleapis.com'>";
         echo "<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>";
         echo "<link href='https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Dancing+Script&family=Rubik+Doodle+Shadow&family=Rubik+Scribble&display=swap' rel='stylesheet'>";

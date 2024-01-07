@@ -21,7 +21,6 @@ try {
 
         // Your existing HTML output
         echo "<!DOCTYPE html>";
-
         echo "<html lang='en'>";  
         echo "<head>";
         echo "<meta name='viewport' content='width=device-width, initial-scale=1.0' />";
@@ -54,7 +53,9 @@ try {
                     echo "<tr>";
                     //query select
                     $restaurant_id = $row['restaurant_id'];
-                    $restaurant_name_stmt = $pdo->prepare("SELECT restaurant_name FROM restaurant WHERE restaurant_id = :restaurant_id");
+                    $restaurant_name_stmt = $conn->prepare("SELECT restaurant_name 
+                                                                FROM restaurant 
+                                                                WHERE restaurant_id = :restaurant_id");
                     $restaurant_name_stmt->bindParam(':restaurant_id', $restaurant_id, PDO::PARAM_INT);
                     $restaurant_name_stmt->execute();
                     $restaurant_name = $restaurant_name_stmt->fetchColumn();
@@ -73,7 +74,7 @@ try {
 
         echo "</div>";
         echo "</body>";
-        echo "/html>";
+        echo "</html>";
 
     } else {
         echo "<p>Courier ID not found in session.</p>";
