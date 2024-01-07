@@ -7,7 +7,9 @@ try {
     // Check if user_id is set in the session
     if (isset($_SESSION['user_id'])) {
         $user_id = $_SESSION['user_id'];
-        $history_order = "SELECT * FROM orders WHERE user_id = :user_id AND status = 'done' ORDER BY order_id DESC;";
+        $history_order = "SELECT * FROM orders 
+                                WHERE orders.user_id = :user_id AND status = 'done' 
+                                ORDER BY order_id DESC; ";
         // Use $user_id in your query or operations
         // For example, if you want to fetch orders for this user:
         $stmt = $conn->prepare($history_order);
@@ -23,15 +25,49 @@ try {
         echo "<meta name='viewport' content='width=device-width, initial-scale=1.0' />";
         echo "<meta charset='UTF-8'>";
         echo "<title>U-DBer Ordering System</title>";
-        echo "<link rel='stylesheet' href='/oldcss/historyorders.css'>";
+        echo "<link rel='stylesheet' href='css/history.css'>";
         echo "<link rel='preconnect' href='https://fonts.googleapis.com'>";
         echo "<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>";
         echo "<link href='https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Dancing+Script&family=Rubik+Doodle+Shadow&family=Rubik+Scribble&display=swap' rel='stylesheet'>";
         echo "</head>";
 
         echo "<body>";
+
+        echo "<header class='header_section'>";
+        echo "<div class='header_top'>";
+            echo "<div class='container-fluid'>";
+                echo "<div class='contact_nav'>";
+                    echo "<a href=''>";
+                        echo "<i class='fa fa-phone' aria-hidden='true'></i>";
+                        echo "<span>";
+                        echo "Call : +886 1234567890";
+                        echo "</span>";
+                    echo "</a>";
+                    echo "<a href=''>";
+                        echo "<i class='fa fa-envelope' aria-hidden='true'></i>";
+                        echo "<span>";
+                        echo "Email : udber@gmail.com";
+                        echo "</span>";
+                    echo "</a>";
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+        echo "<div class='header_bottom'>";
+            echo "<div class='container-fluid'>";
+                echo "<nav class='navbar navbar-expand-lg custom_nav-container '>";
+                    echo "<a class='navbar-brand' href='index.html'>";
+                        echo "<span>";
+                        echo "U-Der";
+                        echo "</span>";
+                    echo "</a>";
+                echo "</nav>";
+            echo "</div>";
+        echo "</div>";
+    echo "</header>";
+
+
         echo "<div class='history-restaurant-container'>";
-            echo "<div class='title'>History Restaurant</div>";
+            echo "<div class='title'>History Orders</div>";
             echo "<table class='restaurant-filter-table'>";
                 echo "<thead>";
                     echo "<tr>";

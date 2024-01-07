@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once('connection.php');
-$courier_id = $_SESSION['user_id'];
 // Assuming you have a variable $orderId with the order ID you want to update
 $order_id = $_POST['selected_order']; // Replace with your actual order ID
 
@@ -25,7 +24,7 @@ try {
 
 
     if ($rowCount > 0) {
-        header("Location: history_order.php.html");
+        header("Location: history_order.php");
         exit();
     } else {
         echo "The specified order ID may not exist or the status is already set to the provided value.";

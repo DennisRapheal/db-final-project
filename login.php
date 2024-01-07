@@ -8,12 +8,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = isset($_POST['password']) ? $_POST['password'] : '';
 
     try {
-        // Create a new PDO instance
-        $pdo = new PDO($dsn);
-
-        // Set error mode
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         // Prepare the SELECT statement based on the input
         $selectUser = "SELECT * FROM dber WHERE username = :username AND password = :password";
         $stmt = $conn->prepare($selectUser);

@@ -8,6 +8,9 @@
                 WHERE orders.status = 'pending'; ";
     $courier_id = $_SESSION['user_id'];
     try {
+        if($courier_id == ''){
+            echo "Not log in yet";
+        }
         $stmt = $conn->prepare($get_order);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

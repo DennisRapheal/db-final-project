@@ -5,7 +5,7 @@ require_once('connection.php');
 $deliverying_order = "SELECT * FROM orders 
                     INNER JOIN restaurant ON restaurant.restaurant_id = orders.restaurant_id 
                     INNER JOIN dber ON dber.user_id = orders.user_id 
-                    WHERE orders.status = 'delivering'; ";
+                    WHERE orders.status = 'delivering' and orders.courier_id = :courier_id; ";
 try {
     // Your database connection
     // Check if user_id is set in the session
@@ -36,7 +36,7 @@ try {
 
         echo "<body>";
         echo "<div class='history-restaurant-container'>";
-            echo "<div class='title'>History Restaurant</div>";
+            echo "<div class='title'>Delivering Orders</div>";
             echo "<table class='restaurant-filter-table'>";
                 echo "<thead>";
                     echo "<tr>";
@@ -45,7 +45,7 @@ try {
                     echo "<th>Orders</th>";
                     echo "<th>Order Address</th>";
                     echo "<th>Delivery Fee</th>";
-
+                    echo "<th>Customer Phone</th>";
                     echo "<th>Status</th>";
                     echo "</tr>";
                 echo "</thead>";
@@ -67,7 +67,7 @@ try {
                     echo "<td>" . htmlspecialchars($row['user_order'], ENT_QUOTES, 'UTF-8') . "</td>";
                     echo "<td>" . htmlspecialchars($row['order_address'], ENT_QUOTES, 'UTF-8') . "</td>";
                     echo "<td>" . htmlspecialchars($row['delivery_fee'], ENT_QUOTES, 'UTF-8') . "</td>";
-                    echo "<td>" . htmlspecialchars($row['Customer Phone Number'], ENT_QUOTES, 'UTF-8') . "</td>";
+                    echo "<td>" . htmlspecialchars($row['phone_number'], ENT_QUOTES, 'UTF-8') . "</td>";
                     echo "<td>" . htmlspecialchars($row['status'], ENT_QUOTES, 'UTF-8') . "</td>";
                     echo "</tr>";
                     }

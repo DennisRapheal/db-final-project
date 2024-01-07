@@ -5,10 +5,11 @@
     $current_order = "SELECT * FROM orders 
                 INNER JOIN restaurant ON restaurant.restaurant_id = orders.restaurant_id 
                 INNER JOIN dber ON dber.user_id = orders.courier_id 
-                WHERE orders.status = 'pending' or orders.status = 'delivering'; ";
+                WHERE orders.user_id = :user_id and orders.status in ('pending', 'delivering'); ";
     $user_id = $_SESSION['user_id'];
     try {
         $stmt = $conn->prepare($current_order);
+        $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -30,7 +31,7 @@
             
             echo "<body>";
             echo "<div class='restaurant-container'>";
-                echo "<div class='title'>Orders Availiable</div>";
+                echo "<div class='title'>Current Orders</div>";
                 if ($result) {
                     echo "<form action='update_current_order.php' method='post'>"; // 開始表單
                     echo "<table class='restaurant-filter-table'>";
@@ -40,16 +41,16 @@
                     echo "<th>Restaurant Name</th>";
                     echo "<th>Order</th>";
                     echo "<td>Courier</td>";
-                    echo "<td>Courier Phone Number</td>";
+                    echo "<td>Courier Phone</td>";
                     echo "<td>Status</td>";
                     echo "</tr>";
                     echo "</thead>";
                     echo "<tbody>";
                     foreach ($result as $row) {
                         echo "<tr>";
-                        echo "<td><input type='checkbox' name='selected_order' value='" . htmlspecialchars($row['order_id'], ENT_QUOTES, 'UTF-8') . "'></td>";
+                        echo "<td><input type='checkbox' name='selected_order' value=" . htmlspecialchars($row['order_id'], ENT_QUOTES, 'UTF-8') . "></td>";
                         echo "<td>" . htmlspecialchars($row['restaurant_name'], ENT_QUOTES, 'UTF-8') . "</td>";
-                        echo "<td>" . htmlspecialchars($row['userorder'], ENT_QUOTES, 'UTF-8') . "</td>";
+                        echo "<td>" . htmlspecialchars($row['user_order'], ENT_QUOTES, 'UTF-8') . "</td>";
                         echo "<td>" . htmlspecialchars($row['username'], ENT_QUOTES, 'UTF-8') . "</td>";
                         echo "<td>" . htmlspecialchars($row['phone_number'], ENT_QUOTES, 'UTF-8') . "</td>";
                         echo "<td>" . htmlspecialchars($row['status'], ENT_QUOTES, 'UTF-8') . "</td>";

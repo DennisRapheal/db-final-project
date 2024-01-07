@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $order_address = isset($_POST['order_address']) ? $_POST['order_address'] : '';
     $delivery_fee = isset($_POST['delivery_fee']) ? $_POST['delivery_fee'] : '';
     $user_id = $_SESSION['user_id'];
-    $submit_order = "INSERT INTO orders (user_id, user_order, restaurant_id, order_address, delivery_fee, status, courier_id) VALUES (:user_id, :user_order, :restaurant_id, :order_address,, :delivery_fee, 'pending', NULL)";
+    $submit_order = "INSERT INTO orders (user_id, user_order, restaurant_id, order_address, delivery_fee, status, courier_id) VALUES (:user_id, :user_order, :restaurant_id, :order_address, :delivery_fee, 'pending', '1')";
 
     // Check if a restaurant was selected
     if ($selectedRestaurant && $user_order != '') {
