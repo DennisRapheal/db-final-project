@@ -14,11 +14,13 @@ try {
 
         // Use $user_id in your query or operations
         // For example, if you want to fetch orders for this user:
-        $stmt = $connn->prepare($deliverying_order);
-        $stmt->bindParam(':courier_id', $courier_id);
+        $stmt = $conn->prepare($deliverying_order);
+        $stmt->bindParam(':courier_id', $courier_id, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->execute();
 
+    // Add this block to print errors
         // Your existing HTML output
         echo "<!DOCTYPE html>";
         echo "<html lang='en'>";  
@@ -81,6 +83,6 @@ try {
     }
 }
 catch(PDOException $e) {
-    echo "<p>Error: " . htmlspecialchars($e->getMessage()) . "</p>";
+    echo "Error: " . $e->getMessage();
 }
 ?>
